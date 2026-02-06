@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "easy_logger"
+version = "0.1.0"
+description = "A simplified Python logging library with colored console output and automatic file logging"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+    { name = "aiwonderland", email = "quantbit@126.com" }
+]
+keywords = [
+    "logging",
+    "logger",
+    "colored-output",
+    "file-logging",
+    "easy-logging",
+    "python-logging"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Logging",
+    "Typing :: Typed"
+]
+requires-python = ">=3.8"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "mypy>=1.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/aiwonderland/easy_logger"
+Repository = "https://github.com/aiwonderland/easy_logger"
+"Bug Tracker" = "https://github.com/aiwonderland/easy_logger/issues"
+Documentation = "https://github.com/aiwonderland/easy_logger#readme"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["easy_logger*"]
+exclude = ["tests*"]
