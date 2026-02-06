@@ -14,3 +14,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Log files now use rotation to prevent unlimited growth and memory consumption. Added `max_bytes` (default 10MB) and `backup_count` (default 5) parameters to `EasyLogger` to control log rotation behavior. Fixes #1.
+
+### Documentation
+- Added comprehensive wiki documentation including API Reference, Configuration Guide, and Migration Guide
