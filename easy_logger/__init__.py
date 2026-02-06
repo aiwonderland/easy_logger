@@ -8,7 +8,7 @@ file logging and colored console output.
 
 from .core import EasyLogger
 
-__version__ = "0.1.1"
+__version__ = "0.2.0"
 __author__ = "aiwonderland"
 __all__ = [
     "EasyLogger"
