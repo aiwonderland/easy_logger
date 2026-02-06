@@ -5,7 +5,7 @@ from typing import Union
 
 DEFAULT_LOG_DIR = Path("./logs")
 
-def get_log_filename(date_format: str = "%Y%m%d") -> str:
+def _get_log_filename(date_format: str = "%Y%m%d") -> str:
     """
     Generate a log filename with a date.
 
@@ -18,7 +18,7 @@ def get_log_filename(date_format: str = "%Y%m%d") -> str:
     today = datetime.now().strftime(date_format)
     return f"{today}_log.txt"
 
-def ensure_log_dir(log_dir: Union[str, Path] = DEFAULT_LOG_DIR) -> Path:
+def _ensure_log_dir(log_dir: Union[str, Path] = DEFAULT_LOG_DIR) -> Path:
     """
     Ensure the log directory exists; create it if it does not.
 

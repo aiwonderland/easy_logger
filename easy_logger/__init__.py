@@ -7,12 +7,9 @@ file logging and colored console output.
 """
 
 from .core import EasyLogger
-from .utils import get_log_filename, ensure_log_dir
 
-__version__ = "1.0.0"
+__version__ = "0.1.1"
 __author__ = "aiwonderland"
 __all__ = [
-    "EasyLogger",
-    "get_log_filename",
-    "ensure_log_dir",
+    "EasyLogger"
 ]

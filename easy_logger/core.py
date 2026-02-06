@@ -1,9 +1,10 @@
 # easy_logger/core.py
 import logging
 import sys
+from logging.handlers import RotatingFileHandler
 from pathlib import Path
 from typing import Any, Optional
-from .utils import get_log_filename, ensure_log_dir
+from .utils import _get_log_filename, _ensure_log_dir
 
 # Define colored output format (make logs more intuitive)
 COLORS = {
@@ -25,7 +26,9 @@ class EasyLogger:
         name: str = "easy_logger",
         level: str = "INFO",
         log_dir: Optional[Path] = None,
-        enable_colors: bool = True
+        enable_colors: bool = True,
+        max_bytes: int = 10 * 1024 * 1024,  # 10MB default
+        backup_count: int = 5  # Keep 5 backup files
     ):
         """
         Initialize a simplified logger with console and file output.
@@ -35,6 +38,8 @@ class EasyLogger:
             level: Log level (DEBUG/INFO/WARNING/ERROR/CRITICAL)
             log_dir: Custom log directory (default: uses ensure_log_dir())
             enable_colors: Enable colored console output (default: True)
+            max_bytes: Maximum size of each log file before rotation (default: 10MB)
+            backup_count: Number of backup log files to keep (default: 5)
         """
         # 1. Create logger instance
         self.logger = logging.getLogger(name)
@@ -56,10 +61,15 @@ class EasyLogger:
             console_handler.setFormatter(formatter)
         self.logger.addHandler(console_handler)
 
-        # 4. File handler (save to log file)
-        log_directory = ensure_log_dir(log_dir) if log_dir else ensure_log_dir()
-        log_file = log_directory / get_log_filename()
-        file_handler = logging.FileHandler(log_file, encoding="utf-8")
+        # 4. File handler (save to log file with rotation)
+        log_directory = _ensure_log_dir(log_dir) if log_dir else _ensure_log_dir()
+        log_file = log_directory / _get_log_filename()
+        file_handler = RotatingFileHandler(
+            log_file,
+            maxBytes=max_bytes,
+            backupCount=backup_count,
+            encoding="utf-8"
+        )
         file_handler.setFormatter(formatter)
         self.logger.addHandler(file_handler)
 
